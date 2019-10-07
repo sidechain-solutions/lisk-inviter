@@ -1,0 +1,14 @@
+{
+  "name": "lisk-inviter",
+  "version": "1.0.0",
+  "description": "Blockchain ticketing system created using Lisk Alpha SDK",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lemii",
+  "license": "MIT",
+  "dependencies": {
+    "lisk-sdk": "2.3.5"
+  }
+}

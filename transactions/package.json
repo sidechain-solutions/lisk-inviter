@@ -1,0 +1,11 @@
+{
+  "name": "lisk-inviter-transactions",
+  "version": "1.0.0",
+  "author": "Lemii",
+  "license": "MIT",
+  "main": "index.js",
+  "dependencies": {
+    "lisk-sdk": "2.2.0",
+    "@liskhq/lisk-constants": "^1.2.3"
+  }
+}
