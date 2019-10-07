@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed&display=swap");
+
+$dark: #23374d;
+$primary: #597da5;
+$secondary: #1089ff;
+
+@import "~bootstrap/scss/bootstrap.scss";
+@import "~animate.css";
+
+body {
+  background: #e5e5e5;
+  font-family: "Roboto", sans-serif !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Roboto Condensed", sans-serif !important;
+}
+
+.full-height {
+  height: 100vw;
+}
+
+.accentuate {
+  font-size: 125%;
+  font-weight: bold;
+}
+
+.clickable-card {
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.clickable-card:hover {
+  background-color: #e5e5e5;
+}
+
+.no-decoration {
+  text-decoration: none !important;
+}
+
+.pointer {
+  cursor: pointer;
+}
