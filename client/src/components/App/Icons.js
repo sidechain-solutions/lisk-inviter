@@ -8,7 +8,8 @@ import {
   faSearch,
   faLongArrowAltLeft,
   faPlus,
-  faCheck
+  faCheck,
+  faExternalLinkAlt
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -19,5 +20,6 @@ library.add(
   faSearch,
   faLongArrowAltLeft,
   faPlus,
-  faCheck
+  faCheck,
+  faExternalLinkAlt
 );
