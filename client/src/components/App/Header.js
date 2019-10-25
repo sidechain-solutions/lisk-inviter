@@ -11,7 +11,7 @@ const Header = () => (
     </NavLink>
 
     <div className="navbar pt-2" id="navbarsExampleDefault">
-      <NavLink to="/checkin" className="nav-link text-light">
+      <NavLink to="/events" className="nav-link text-light">
         Check-In
       </NavLink>
 
