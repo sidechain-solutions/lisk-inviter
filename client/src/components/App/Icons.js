@@ -9,7 +9,9 @@ import {
   faLongArrowAltLeft,
   faPlus,
   faCheck,
-  faExternalLinkAlt
+  faExternalLinkAlt,
+  faArrowLeft,
+  faArrowRight
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -21,5 +23,7 @@ library.add(
   faLongArrowAltLeft,
   faPlus,
   faCheck,
-  faExternalLinkAlt
+  faExternalLinkAlt,
+  faArrowLeft,
+  faArrowRight
 );

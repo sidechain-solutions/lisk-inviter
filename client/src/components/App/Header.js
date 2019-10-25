@@ -12,7 +12,7 @@ const Header = () => (
 
     <div className="navbar pt-2" id="navbarsExampleDefault">
       <NavLink to="/events" className="nav-link text-light">
-        Check-In
+        Events
       </NavLink>
 
       <NavLink to="/account" className="nav-link text-light">
