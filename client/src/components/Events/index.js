@@ -3,16 +3,20 @@ import { getTransactions } from "../../utils/api";
 import LatestEvents from "./LatestEvents";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EventCard from "../Home/EventCard";
+import { Link } from "react-router-dom";
 
 const CheckIn = props => {
   const [latestEvents, setLatestEvents] = useState({ col1: [], col2: [] });
+  const [totalCount, setTotalCount] = useState(0);
   const [hasSearched, setHasSearched] = useState(false);
   const [eventId, setEventId] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [error, setError] = useState();
 
+  const offset = props.match.params.offset ? parseInt(props.match.params.offset) : 0;
+
   useEffect(() => {
-    getTransactions({ type: 11, limit: 6, sort: "timestamp:desc" })
+    getTransactions({ type: 11, limit: 6, sort: "timestamp:desc", offset })
       .then(res => {
         const split = Math.ceil(res.data.length / 2);
 
@@ -20,11 +24,13 @@ const CheckIn = props => {
           col1: res.data.slice(0, split),
           col2: res.data.slice(split, res.data.length)
         });
+
+        setTotalCount(parseInt(res.meta.count));
       })
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [props.match.params.offset]);
 
   const handleChange = e => {
     setEventId(e.target.value.trim());
@@ -51,6 +57,45 @@ const CheckIn = props => {
   const reset = () => {
     setHasSearched(false);
     setSearchResult([]);
+  };
+
+  const PaginationButton = ({ direction }) => {
+    const eventsPerPage = 6;
+    let buttonComponent;
+
+    if (direction === "previous") {
+      const isDisabled = offset < eventsPerPage;
+
+      buttonComponent = isDisabled ? (
+        <button className="btn btn-lg btn-outline-primary mt-4 mb-5 mr-3" disabled>
+          <FontAwesomeIcon icon="arrow-left" />
+        </button>
+      ) : (
+        <Link
+          to={`/events/${offset - eventsPerPage}`}
+          className="btn btn-lg btn-outline-primary mt-4 mb-5 mr-3"
+        >
+          <FontAwesomeIcon icon="arrow-left" />
+        </Link>
+      );
+    } else if (direction === "next") {
+      const isDisabled = totalCount - offset < eventsPerPage;
+
+      buttonComponent = isDisabled ? (
+        <button className="btn btn-lg btn-outline-primary mt-4 mb-5" disabled>
+          <FontAwesomeIcon icon="arrow-right" />
+        </button>
+      ) : (
+        <Link
+          to={`/events/${offset + eventsPerPage}`}
+          className="btn btn-lg btn-outline-primary mt-4 mb-5"
+        >
+          <FontAwesomeIcon icon="arrow-right" />
+        </Link>
+      );
+    }
+
+    return buttonComponent;
   };
 
   return (
@@ -96,8 +141,14 @@ const CheckIn = props => {
         </>
       ) : (
         <>
-          <h1 className="mb-4">Latest 6 Events</h1>
+          <h1 className="mb-0">
+            Showing Events {offset + 1}-{offset + 6 < totalCount ? offset + 6 : totalCount}
+          </h1>
+          <p className="mb-4">Total: {totalCount}</p>
           <LatestEvents col1={latestEvents.col1} col2={latestEvents.col2} />
+
+          <PaginationButton direction="previous" />
+          <PaginationButton direction="next" />
         </>
       )}
     </div>
