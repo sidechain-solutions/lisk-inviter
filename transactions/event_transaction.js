@@ -134,7 +134,7 @@ class EventTransaction extends BaseTransaction {
       sender.asset.eventsInvited =
         (sender.asset.eventsInvited === sender.asset.eventsInvited.length) === 1
           ? undefined
-          : ender.asset.eventsInvited.splice(sender.asset.eventsInvited.indexOf(this.id), 1);
+          : sender.asset.eventsInvited.splice(sender.asset.eventsInvited.indexOf(this.id), 1);
 
       store.account.set(sender.address, sender);
     });
